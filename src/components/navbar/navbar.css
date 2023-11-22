@@ -1,0 +1,19 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #34C94B; /* Green color */
+    color: white;
+    height: 74px;
+    padding: 0 20px; /* Adjust as needed */
+  }
+/*   
+  .logoContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 50px; /* Adjust as needed */
+ 

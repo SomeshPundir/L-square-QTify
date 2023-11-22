@@ -1,0 +1,38 @@
+/* card.css */
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .CardContent {
+    padding: 16px;
+  }
+
+  #blackChip {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  h6 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}

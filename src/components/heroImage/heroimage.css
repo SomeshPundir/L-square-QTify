@@ -1,0 +1,47 @@
+/* Hero.css */
+.heroContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#121212;
+    color: #FFFFFF;
+  }
+ 
+  .heroPara {
+    margin: 17px 68px;
+    flex: 1; /* Take up available space */
+    padding: 20px; /* Adjust as needed */
+    width: 556px;
+    font-size: 30px;
+
+  }
+  
+  .heroImg {
+    height:212px ;
+    width: 212px;
+    flex: 1;
+    display: flex;
+    padding: 10px;
+    justify-content: flex-start; 
+    overflow: hidden; /* Ensure the image doesn't overflow its container */
+  }
+  
+  .heroImg img {
+    max-width: 100%; /* Set the maximum width of the image to 100% of its parent container */
+    height: auto;
+    object-fit: cover; /* Ensure the image covers the entire container, maintaining its aspect ratio */
+  }
+  /* Optional: Adjust styles for better responsiveness */
+  @media (max-width: 768px) {
+    .heroContainer {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      text-align: center;
+    }
+  
+    .heroPara,
+    .heroImg {
+      flex: none; /* Reset to not take up all available space */
+      width: 100%;
+    }
+  }
+  

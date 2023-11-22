@@ -1,0 +1,25 @@
+/* SearchBar.css */
+.searchBarContainer {
+    display: flex;
+    /* align-items: center; */
+  }
+  
+  .input {
+    width: 568px;
+    height: 40px;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  .searchButton {
+    /* border: 1px solid black; Add a border for better visibility */
+    /* color:#FFFFFF; */
+    cursor: pointer;
+    border: none;
+    border-radius: 0 8px 8px 0;    /* margin-left: 8px; */
+  }
+  
+  .searchIcon {
+    height: 20px;
+    /* Add other styling properties */
+  }
+  

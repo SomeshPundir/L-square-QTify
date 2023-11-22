@@ -1,0 +1,12 @@
+/* Logo.css */
+.logoContainer {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  
+  .logo {
+    height: 50px;
+    /* Add other styling properties */
+  }
+  
