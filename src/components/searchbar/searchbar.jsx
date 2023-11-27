@@ -6,9 +6,13 @@ const SearchBar = () => {
   return (
     <div className="searchBarContainer">
       <input type="text" placeholder="Search a song of your choice" className="input" />
-      <button className="searchButton">
+      {/* <button className="searchButton">
         <img src={search} alt="Search" className="searchIcon" />
-      </button>
+      </button> */}
+      <div className='searchButton'>
+      <img src={search} alt="Search" className="searchIcon" />
+
+      </div>
     </div>
   );
 };
