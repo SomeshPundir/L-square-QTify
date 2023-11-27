@@ -1,25 +1,39 @@
-/* Accordion.css */
+.accordion-container {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+
+  width: 80vw; /* Adjust the width as needed */
+}
+h5{
+  display: flex;
+align-items: center;
+}
+
 .accordion {
-    width: 100%;
-  }
-  
-  .accordion-item {
-    border: 1px solid #ddd;
-    margin-bottom: 8px;
-  }
-  
-  .accordion-header {
-    padding: 12px;
-    cursor: pointer;
-    background-color: #f1f1f1;
-  }
-  
-  .accordion-content {
-    padding: 12px;
-    display: none;
-  }
-  
-  .accordion-item.active .accordion-content {
-    display: block;
-  }
-  
+  border: 2px solid #ffffff;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  align-items: center;
+text-align: center;
+}
+
+
+.accordion button {
+  background-color: #121212;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion-content {
+  background-color: #eee;
+  color: #121212;
+  padding: 10px;
+  width: 100%;
+  font-weight: 300;
+}

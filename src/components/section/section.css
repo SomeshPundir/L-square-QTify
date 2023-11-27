@@ -9,12 +9,18 @@
 } 
 .cardsWrapper{
     margin-top: 18px;
+    
 }
-.wrapper{
+.wrapperSection{
     display:flex;
     gap:40px;
     flex-wrap:wrap;
 }
+
+  
+/* .wrapper >Card{
+ width: 20vw;
+} */
 
 .arrangeSides{
     

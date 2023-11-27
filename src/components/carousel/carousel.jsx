@@ -11,7 +11,7 @@ const Controls=({data})=>{
     const swiper=useSwiper();
     useEffect(()=>{ 
         swiper.slideTo(0,1);
-    },[]);
+    },[swiper]);
     return <></>
 }
 export default function Carousel({data,renderComponent}){
@@ -28,13 +28,15 @@ export default function Carousel({data,renderComponent}){
     allowTouchMove>
         <Controls data={dataArray}/>
         <CarouselLeftNav/>
-        <CarouselRightNav/>
-        {/* this is returning the correct data */}
-        {console.log(data)}
-        
+        <CarouselRightNav/> 
+        {/* this is returning the correct data
+        {/* {console.log('this is the important daata')};
+
+        {console.log(dataArray)}; */}
+        {/* <CoruselButton/> */}
 
         {dataArray.map((ele)=>(
-        <SwiperSlide>{renderComponent(ele)}</SwiperSlide>
+        <SwiperSlide key={ele.id}>{renderComponent(ele)}</SwiperSlide>
         ))}
     </Swiper>
         </div>) ;

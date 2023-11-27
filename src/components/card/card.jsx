@@ -15,9 +15,9 @@ export default function card({ data, type }) {
       case "album": {
         const { image, follows, songs, title, slug } = data;
         return (
-          <>
+          <div className="theWrapper">
             <Tooltip title={`${songs.length} songs`} placement="top" arrow>
-              <a href={`/album/${slug}`}>
+              <a  className="anchor" href={`/album/${slug}`}>
                 <Card
                 // sx={{MaxWidth: 179, height:205 }}
                 >
@@ -48,7 +48,7 @@ export default function card({ data, type }) {
                 </div>
               </a>
             </Tooltip>
-          </>
+          </div>
         );
       }
       case "song": {
