@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useSwiper } from 'swiper/react';
-import styles from './carouselLeftnavigation.css';
-import leftArrowImage from '../../assets/leftArrow.png';
-import 'swiper/swiper-bundle.css';
+import React, { useEffect } from "react";
+import { useSwiper } from "swiper/react";
+import { useState } from "react";
+import styles from "../Carousel.module.css";
+import { ReactComponent as LeftArrow } from "../../../assets/LeftArrow.svg";
 
-export default function CarouselLeftNav() {
-  const swiper = useSwiper();
-  const [isBeginning, setIsBeginning] = useState(swiper.isBeginning);
-  console.log(isBeginning);
-  console.log(setIsBeginning);
-  useEffect(() => {
-    swiper.on("slideChange", function () {
-      setIsBeginning(swiper.isBeginning);
-    });
-  }, [swiper]);
+const CarouselLeftNavigation = () => {
+	const swiper = useSwiper();
 
-  return (
-    <div className={styles.leftNavigation}>
-      {isBeginning && <img src={leftArrowImage} alt="Left Arrow" onClick={() => swiper.slidePrev()} />}
-    </div>
-  );
-}
+	const [isBegin, setIsBegin] = useState(true); // Initialize isBegin to true.
+
+	useEffect(() => {
+		swiper.on("slideChange", () => {
+			setIsBegin(swiper.isBeginning); // Update isBegin when slideChange event occurs.
+		});
+	}, [swiper]); // Include swiper in the dependencies array.
+
+	return (
+		<div className={styles.leftNavigation}>
+			{!isBegin && <LeftArrow onClick={() => swiper.slidePrev()} />}
+		</div>
+	);
+};
+
+export default CarouselLeftNavigation;

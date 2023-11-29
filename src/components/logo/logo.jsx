@@ -1,16 +1,12 @@
-// Logo.jsx
-import React from 'react';
-import './logo.css'; // Import the CSS file
-import  logoimg from "../assets/Group 1.png"
+import React from "react";
+import LogoImage from "../../assets/logo.png";
+
 const Logo = () => {
-  return (
-    <div className="logoContainer">
-      <img src={logoimg} alt="QTify Logo" className="logo" />
-    </div>
-  );
+	return (
+		<>
+			<img src={LogoImage} alt="Logo" width={67} height={34} />
+		</>
+	);
 };
 
 export default Logo;
-
-
-

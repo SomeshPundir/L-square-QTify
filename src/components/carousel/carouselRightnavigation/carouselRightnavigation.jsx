@@ -1,24 +1,26 @@
 import React, { useEffect } from "react";
-import { useSwiper } from 'swiper/react';
-import styles from './carouselRightnavigation.css';
-import rightArrowImage from '../../assets/rightArrow.png';
-import 'swiper/swiper-bundle.css';
+import { useSwiper } from "swiper/react";
+import { useState } from "react";
+import styles from "../Carousel.module.css";
+import { ReactComponent as RightArrow } from "../../../assets/RightArrow.svg";
 
+const CarouselRightNavigation = () => {
+	const swiper = useSwiper();
 
-export default function CarouselRightNav() {
-  const swiper = useSwiper();
-  const [isEnd, setIsEnd] = React.useState(swiper.isEnd);
-// console.log(isEnd);
-// console.log(setIsEnd);
-  useEffect(() => {
-    swiper.on("slideChange", function () {
-      setIsEnd(swiper.isEnd);
-    });
-  }, [swiper]);
+	const [isEnd, setIsEnd] = useState(swiper.isEnd);
 
-  return (
-    <div className={styles.rightNavigation}>
-      {isEnd && <img src={rightArrowImage} alt="Right Arrow" onClick={() => swiper.slideNext()} />}
-    </div>
-  );
-}
+	useEffect(() => {
+		swiper.on("slideChange", () => {
+			setIsEnd(swiper.isEnd);
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	return (
+		<div className={styles.rightNavigation}>
+			{!isEnd && <RightArrow onClick={() => swiper.slideNext()} />}
+		</div>
+	);
+};
+
+export default CarouselRightNavigation;

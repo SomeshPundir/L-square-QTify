@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.footer_container {
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+	padding: 50px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-items: center;
+	align-items: flex-start;
+	color: white;
+	background-color: var(--color-primary);
+	margin-top: 10px;
+}
+
+.first_col {
+	margin-right: 10px;
+}
+
+.company_name {
+	font-size: 20px;
+	margin-bottom: 20px;
+	color: #121212;
+	border-bottom: 2px solid #121212;
+
+}
+
+.company_description {
+	font-size: 14px;
+	line-height: 1.2;
+
+}
+
+.link_header {
+	font-size: 20px;
+	color: #121212;
+	border-bottom: 2px solid #121212;
+
+	
+}
+
+.link_items {
+	list-style: none;
+	cursor: pointer;
+	padding-left: 0;
+}

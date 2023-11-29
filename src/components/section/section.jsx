@@ -1,67 +1,72 @@
+// Import necessary dependencies and styles
 import React, { useState } from "react";
-import { CircularProgress } from "@mui/material";
-import Card from "../card/card";
-import Carousel from "../carousel/carousel";
-import "./section.css";
+import styles from "./Section.module.css";
+import Card from "../../components/Card/Card";
+import Carousel from "../Carousel/Carousel";
+import SkeletonLoader from "../SkeletonLoader/SkeletonLoader";
+import { useSnackbar } from "notistack";
 
-export default function Section({ title, data, type }) {
+// Functional component definition for Section
+const Section = ({ title, data, type, header, loadingState }) => {
+  // Snackbar hook for displaying notifications
+  const { enqueueSnackbar } = useSnackbar();
+
+  // State for toggling between Carousel and Card view
   const [carouselToggle, setCarouselToggle] = useState(true);
 
-  const handleToggle = () => {
-    setCarouselToggle((prevState) => !prevState);
+  // Function to handle toggling between Carousel and Card view
+  const _handleToggle = () => {
+    setCarouselToggle(!carouselToggle);
   };
 
-  console.log(data);
-
+  // Render the Section component
   return (
-    <div className="header">
-      <div className="arrangeSides">
-        {/* Displaying the section title */}
-        <h3>{title}</h3>
-
-        {/* Displaying the "Show All" or "Collapse All" text based on the toggle state */}
-        <h4 className="toggleText" onClick={handleToggle}>
-          {!carouselToggle ? "Show All" : "Collapse All"}
-        </h4>
-      </div>
-
-      {/* Checking if there is data to display */}
-      {data.length === 0 ? (
-        // If no data, display a CircularProgress component
-        <CircularProgress />
+    <div className={styles.sectionWrapper}>
+      {/* Header section */}
+      {header === "all" ? (
+        <></>
       ) : (
-        // If there is data
-        <div className={`cardsWrapper ${carouselToggle ? 'flexedCards' : ''}`}>
-          {/* <div className={`cardsWrapper ${carouselToggle ? 'flexedCards' : ''}`}> */}
+        <div className={styles.header}>
+          <h3>{title}</h3>
+          {/* Toggle text for switching between Carousel and Card view */}
+          <h4 className={styles.toggleText} onClick={_handleToggle}>
+            {carouselToggle ? "Show all" : "Collapse"}
+          </h4>
+        </div>
+      )}
 
+      {/* Main content section */}
+      {data?.length ? (
+        <div className={styles.cardWrapper}>
           {!carouselToggle ? (
-            // If toggle is false, display individual cards
-            <div className="wrapperSection">
-              {data.map((ele) => (
-                // Rendering the Card component for each data item
-                <Card
-                  // key={ele.id} // Uncomment if you have a unique key for each card
-                  data={ele}
-                  type={type}
-                />
+            // Card view
+            <div className={styles.wrapper}>
+              {data?.map((item) => (
+                <Card data={item} type={type} key={item.id} />
               ))}
             </div>
           ) : (
-            // If toggle is true, display a Carousel with cards
+            // Carousel view
             <Carousel
               data={data}
-              renderComponent={(data) => (
-                // Rendering the Card component within the Carousel
-                <Card
-                  // key={data.id} // Uncomment if you have a unique key for each card
-                  data={data}
-                  type={type}
-                />
-              )}
+              renderCardComponent={(item) => <Card data={item} type={type} />}
             />
           )}
+        </div>
+      ) : loadingState ? (
+        // Skeleton loader when data is still loading
+        <SkeletonLoader name={"card"} count={5} />
+      ) : (
+        // Display an error message when no data is found
+        <div>
+          {/* Snackbar notification for data loading failure */}
+          {enqueueSnackbar("Loading Data failed. Try again later", { variant: "error" })} 
+          <p style={{ color: 'red', fontWeight: 'bold' }}>Error: No Data Found</p>
         </div>
       )}
     </div>
   );
-}
+};
+
+// Export the Section component
+export default Section;

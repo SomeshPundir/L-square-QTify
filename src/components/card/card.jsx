@@ -1,87 +1,73 @@
+// Import necessary dependencies and styles
 import React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { Tooltip } from "@mui/material";
-// import BlackButton from "./cardbutton";
-import "./card.css";
-export default function card({ data, type }) {
+import { Tooltip, Chip } from "@mui/material";
+import styles from "./Card.module.css";
+import { useNavigate } from "react-router-dom";
+
+// Functional component definition for Card
+const Card = ({ data, type }) => {
+  // Hook for navigating to different routes
+  const navigate = useNavigate();
+
+  // Function to determine and render the appropriate card based on the 'type'
   const getCard = (type) => {
     switch (type) {
-      case "album": {
-        const { image, follows, songs, title, slug } = data;
+      // Case for 'album' type
+      case "album":
         return (
-          <div className="theWrapper">
-            <Tooltip title={`${songs.length} songs`} placement="top" arrow>
-              <a  className="anchor" href={`/album/${slug}`}>
-                <Card
-                // sx={{MaxWidth: 179, height:205 }}
-                >
-                  <CardContent>
-                    <div>
-                      <CardMedia
-                        className="imagecontainer"
-                        sx={{ height: 200, borderRadius: "10px" }}
-                        image={image}
-                        title={title}
-                      />
-                      <CardActions>
-                        <Stack direction="row" spacing={1}>
-                          <Chip
-                            sx={{
-                              backgroundColor: "black",
-                              color: "white",
-                            }}
-                            label={`${follows} follows`}
-                          />
-                        </Stack>
-                      </CardActions>
-                    </div>
-                  </CardContent>
-                </Card>
-                <div>
-                  <Typography sx={{ fontSize: "14px" }}>{title}</Typography>
+          // Tooltip for displaying the number of songs in the album
+          <Tooltip title={`${data.songs.length} songs`} placement="top" arrow>
+            {/* Clickable card wrapper for albums */}
+            <div className={styles.wrapper} onClick={() => navigate(`/album/${data?.slug}`)}>
+              {/* Album card content */}
+              <div className={styles.card}>
+                {/* Album cover image */}
+                <img src={data.image} alt="album" />
+                {/* Banner section with a Chip displaying the number of follows */}
+                <div className={styles.banner}>
+                  <Chip label={`${data.follows} Follows`} className={styles.chip} size="small" />
                 </div>
-              </a>
-            </Tooltip>
+              </div>
+              {/* Title wrapper for the album */}
+              <div className={styles.titleWrapper}>
+                <p>{data.title}</p>
+              </div>
+            </div>
+          </Tooltip>
+        );
+
+      // Case for 'songs' type
+      case "songs":
+        return (
+          // Wrapper for songs card
+          <div className={styles.wrapper}>
+            {/* Songs card content */}
+            <div className={styles.card}>
+              {/* Song cover image */}
+              <img src={data.image} alt="song" loading="lazy" />
+              {/* Banner section with a pill displaying the number of likes */}
+              <div className={styles.banner}>
+                <div id={styles.pill}>
+                  <p>{data.likes} Likes</p>
+                </div>
+              </div>
+            </div>
+            {/* Title wrapper for the song */}
+            <div className={styles.titleWrapper}>
+              <p>{data.title}</p>
+            </div>
           </div>
         );
-      }
-      case "song": {
-        const { image, likes, title } = data;
 
-        return (
-          <>
-            <Card>
-              <CardContent>
-                <div>
-                  <CardMedia
-                    className="imagecontainer"
-                    sx={{ height: 200, borderRadius: "10px" }}
-                    image={image}
-                    title={title}
-                  />
-                  <CardActions>
-                    <div className="pills">
-                      <p>{likes} likes</p>
-                    </div>
-                  </CardActions>
-                </div>
-              </CardContent>
-            </Card>
-            <div>
-              <Typography sx={{ fontSize: "14px" }}>{title}</Typography>
-            </div>
-          </>
-        );
-      }
+      // Default case for unknown 'type'
       default:
         return <></>;
     }
   };
+
+  // Render the appropriate card based on the 'type'
   return getCard(type);
-}
+};
+
+// Export the Card component
+export default Card;
